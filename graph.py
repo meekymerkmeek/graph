@@ -457,8 +457,18 @@ def create_graph(data):
 
     while edge_start < len(lines) and lines[edge_start].strip() == "":
         edge_start += 1
-    start_index = int(lines[edge_start])
-    search_color = lines[edge_start + 1].strip()
+        
+    if edge_start < len(lines):
+        start_index = int(lines[edge_start])
+    else:
+        raise ValueError("Missing start index after edges.")
+
+    if edge_start + 1 < len(lines):
+        search_color = lines[edge_start + 1].strip()
+    else:
+        raise ValueError("Missing search color after start index.")
+    #start_index = int(lines[edge_start])
+    #search_color = lines[edge_start + 1].strip()
 
     return graph, start_index, search_color
 
