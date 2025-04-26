@@ -454,6 +454,8 @@ def create_graph(data):
         graph.vertices[to_index].add_edge(from_index)
         edge_start += 1
 
+    while edge_start < len(lines) and lines[edge_start].strip() == "":
+        edge_start += 1
     start_index = int(lines[edge_start])
     search_color = lines[edge_start + 1]
 
