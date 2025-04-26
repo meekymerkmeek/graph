@@ -300,7 +300,6 @@ class ImageGraph:
         # Fill img array
         for vertex in self.vertices:
             img[vertex.y][vertex.x] = vertex.color
-
         for line in img:
             for pixel in line:
                 print_block(pixel)
