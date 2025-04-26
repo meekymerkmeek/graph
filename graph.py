@@ -448,7 +448,7 @@ def create_graph(data):
     edge_start = 2 + num_vertices
     while edge_start < len(lines) and lines[edge_start].strip():
         edge_start += 1
-    while "," in lines[edge_start]:
+    while edge_start < len(lines) and "," in lines[edge_start]:
         from_index, to_index = map(int, lines[edge_start].split(","))
         graph.vertices[from_index].add_edge(to_index)
         graph.vertices[to_index].add_edge(from_index)
