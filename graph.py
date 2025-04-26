@@ -446,7 +446,7 @@ def create_graph(data):
         graph.vertices.append(vertex)
 
     edge_start = 2 + num_vertices
-    while edge_start < len(lines) and lines[edge_start].strip():
+    while edge_start < len(lines) and lines[edge_start].strip() == "":
         edge_start += 1
     while edge_start < len(lines) and "," in lines[edge_start]:
         from_index, to_index = map(int, lines[edge_start].split(","))
