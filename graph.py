@@ -329,88 +329,89 @@ class ImageGraph:
         return matrix
 
 def bfs(self, start_index, color):
-        """
-        You must implement this algorithm using a Queue.
+    """
+    You must implement this algorithm using a Queue.
 
-        Performs a Breadth-First Search (DFS) starting from a given vertex, changing
-        all vertices that are adjacent and share the same color as the starting
-        vertex's color to the given color. Think of how an image bucket fill will
-        only change all same colored pixels that are in contact with each other.
+    Performs a Breadth-First Search (DFS) starting from a given vertex, changing
+    all vertices that are adjacent and share the same color as the starting
+    vertex's color to the given color. Think of how an image bucket fill will
+    only change all same colored pixels that are in contact with each other.
 
-        Do not remove the first 2 statements we provide.
-        you may choose to call print_images in this method debugging yourself
+    Do not remove the first 2 statements we provide.
+    you may choose to call print_images in this method debugging yourself
 
 
-        This method assumes that the pre conditions have been handled before
-        calling this method.
+    This method assumes that the pre conditions have been handled before
+    calling this method.
 
-        pre: start_index is a valid integer representing the index of the starting
-             vertex in the vertices instance variable.
-             color: The color to change vertices to during the DFS traversal
+    pre: start_index is a valid integer representing the index of the starting
+        vertex in the vertices instance variable.
+    Color: The color to change vertices to during the DFS traversal
 
-        post: every vertex that matches the start index's color will be recolored
-              to the given color
-        """
+    post: every vertex that matches the start index's color will be recolored
+        to the given color
+    """
 
-        self.reset_visited()
-        print("Starting BFS; initial state:")
-        self.print_image()
+    self.reset_visited()
+    print("Starting BFS; initial state:")
+    self.print_image()
 
-        start_color = self.vertices[start_index].color
-        queue = Queue()
-        queue.enqueue(start_index)
+    start_color = self.vertices[start_index].color
+    queue = Queue()
+    queue.enqueue(start_index)
 
-        while not queue.is_empty():
-            current_index = queue.dequeue()
-            vertex = self.vertices[current_index]
+    while not queue.is_empty():
+        current_index = queue.dequeue()
+        vertex = self.vertices[current_index]
             
-            if not vertex.visited and vertex.color == start_color:
-                vertex.visit_and_set_color(color)
+        if not vertex.visited and vertex.color == start_color:
+            vertex.visit_and_set_color(color)
 
-                for neighbor_index in vertex.edges:
-                    queue.enqueue(neighbor_index)
+            for neighbor_index in vertex.edges:
+                queue.enqueue(neighbor_index)
                 
 def dfs(self, start_index, color):
-        """
-        You must implement this algorithm using a Stack WITHOUT using recursion.
+    
+    """
+    You must implement this algorithm using a Stack WITHOUT using recursion.
 
-        Performs a Depth-First Search (DFS) starting from a given vertex, changing
-        all vertices that are adjacent and share the same color as the starting
-        vertex's color to the given color. Think of how an image bucket fill will
-        only change all same colored pixels that are in contact with each other.
+    Performs a Depth-First Search (DFS) starting from a given vertex, changing
+    all vertices that are adjacent and share the same color as the starting
+    vertex's color to the given color. Think of how an image bucket fill will
+    only change all same colored pixels that are in contact with each other.
 
-        Do not remove the first 2 statements we provide.
-        you may choose to call print_images in this func method debugging yourself
+    Do not remove the first 2 statements we provide.
+    you may choose to call print_images in this func method debugging yourself
 
 
-        This method assumes that the pre conditions have been handled before
-        calling this method.
+    This method assumes that the pre conditions have been handled before
+    calling this method.
 
-        pre: start_index is a valid integer representing the index of the starting
-             vertex in the vertices instance variable.
-             color: The color to change vertices to during the DFS traversal
+    pre: start_index is a valid integer representing the index of the starting
+        vertex in the vertices instance variable.
+    color: The color to change vertices to during the DFS traversal
 
-        post: every vertex that matches the start index's color will be recolored
-              to the given color
-        """
+    post: every vertex that matches the start index's color will be recolored
+    to the given color
+    """
 
-        self.reset_visited()
-        print("Starting DFS; initial state:")
-        self.print_image()
+    self.reset_visited()
+    print("Starting DFS; initial state:")
+    self.print_image()
 
-        start_color = self.vertices[start_index].color
-        stack = Stack()
-        stack.push(start_index)
+    start_color = self.vertices[start_index].color
+    stack = Stack()
+    stack.push(start_index)
         
-        while not stack.is_empty():
-            current_index = stack.pop()
-            vertex = self.vertices[current_index]
+    while not stack.is_empty():
+        current_index = stack.pop()
+         vertex = self.vertices[current_index]
 
-            if not vertex.visited and vertex.color == start_color:
-                vertex.visit_and_set_color(color)
+        if not vertex.visited and vertex.color == start_color:
+            vertex.visit_and_set_color(color)
 
-                for neighbor_index in vertex.edges:
-                    stack.push(neighbor_index)
+            for neighbor_index in vertex.edges:
+                stack.push(neighbor_index)
                     
 def create_graph(data):
     """
