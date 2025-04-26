@@ -446,29 +446,28 @@ def create_graph(data):
         graph.vertices.append(vertex)
 
     edge_start = 2 + num_vertices
-    while edge_start < len(lines) and lines[edge_start].strip() == "":
-        edge_start += 1
-        
-    while edge_start < len(lines) and "," in lines[edge_start]:
-        from_index, to_index = map(int, lines[edge_start].split(","))
-        graph.vertices[from_index].add_edge(to_index)
-        graph.vertices[to_index].add_edge(from_index)
-        edge_start += 1
 
-    while edge_start < len(lines) and lines[edge_start].strip() == "":
-        edge_start += 1
-        
-    if edge_start < len(lines):
-        start_index = int(lines[edge_start])
-    else:
-        raise ValueError("Missing start index after edges.")
+    while edge_start < len(lines):
+        line = lines[edge_start].strip()
 
-    if edge_start + 1 < len(lines):
-        search_color = lines[edge_start + 1].strip()
-    else:
-        raise ValueError("Missing search color after start index.")
-    #start_index = int(lines[edge_start])
-    #search_color = lines[edge_start + 1].strip()
+        if line == "":
+            edge_start += 1
+            continue
+
+        if "," in line:
+            parts = line.split(",")
+            if len(parts) == 2 and parts[0].isdigit() and parts[1].isdigit():
+                from_index, to_index = map(int, parts)
+                graph.vertices[from_index].add_edge(to_index)
+                graph.vertices[to_index].add_edge(from_index)
+                edge_start += 1
+            else:
+                break
+        else:
+            break
+
+    start_index = int(lines[edge_start])
+    search_color = lines[edge_start + 1].strip()
 
     return graph, start_index, search_color
 
