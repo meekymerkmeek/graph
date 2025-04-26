@@ -325,7 +325,7 @@ class ImageGraph:
         matrix = [[0 for _ in range(n)]for _ in range(n)]
         for vertex in self.vertices:
             for neighbor_index in vertex.edges:
-                matrix[v.index][i] = 1
+                matrix[vertex.index][neighbor_index] = 1
         return matrix
         
     def bfs(self, start_index, color):
@@ -445,7 +445,7 @@ def create_graph(data):
     graph = ImageGraph(image_size)
 
     for i in range(num_vertices):
-        z, y, color = lines[2 + i].split(",")
+        x, y, color = lines[2 + i].split(",")
         vertex = ColoredVertex(i, int(x), int(y), color)
         graph.vertices.append(vertex)
 
