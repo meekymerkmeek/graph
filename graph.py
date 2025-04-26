@@ -327,7 +327,6 @@ class ImageGraph:
             for neighbor_index in vertex.edges:
                 matrix[vertex.index][neighbor_index] = 1
         return matrix
-        
     def bfs(self, start_index, color):
         """
         You must implement this algorithm using a Queue.
@@ -363,7 +362,6 @@ class ImageGraph:
         while not queue.is_empty():
             current_index = queue.dequeue()
             vertex = self.vertices[current_index]
-            
             if not vertex.visited and vertex.color == start_color:
                 vertex.visit_and_set_color(color)
 
@@ -400,8 +398,7 @@ class ImageGraph:
 
         start_color = self.vertices[start_index].color
         stack = Stack()
-        stack.push(start_index)
-        
+        stack.push(start_index) 
         while not stack.is_empty():
             current_index = stack.pop()
             vertex = self.vertices[current_index]
